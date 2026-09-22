@@ -1,0 +1,377 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+
+// ---------------------------------------------------------------------------
+// Dados da empresa. Tudo que muda com frequência mora aqui.
+// TODO cliente: confirmar cidade, CNPJ e horário de atendimento.
+// ---------------------------------------------------------------------------
+const empresa = {
+  nome: 'Preserv Consultoria Ambiental',
+  razaoSocial: 'PRESERV CONSULTORIA AMBIENTAL LTDA',
+  cnpj: '00.000.000/0001-00', // TODO cliente
+  cidade: 'Londrina', // TODO cliente: confirmar sede
+  uf: 'PR',
+  telefone: '+55 43 98804-9191',
+  telefoneExibicao: '(43) 98804-9191',
+  email: 'preserv.consultoriaambiental@gmail.com',
+  horario: 'Segunda a sexta, 8h às 18h', // TODO cliente
+};
+
+const zapTexto = encodeURIComponent(
+  'Olá! Vim pelo site e gostaria de falar sobre a regularização ambiental da minha empresa.'
+);
+const zap = `https://wa.me/5543988049191?text=${zapTexto}`;
+
+const titulo = 'Preserv Consultoria Ambiental | Licenciamento ambiental no Paraná';
+const descricao =
+  'Consultoria ambiental para indústria, agronegócio e comércio no Paraná. Licenciamento ambiental, gestão de resíduos e efluentes e assessoria técnica continuada.';
+
+const servicos = [
+  {
+    titulo: 'Licenciamento Ambiental',
+    texto:
+      'Condução completa do processo junto ao órgão ambiental, da caracterização do empreendimento à emissão e renovação da licença.',
+    itens: [
+      'Licença Prévia, de Instalação e de Operação',
+      'Licenciamento simplificado e dispensa',
+      'Renovações e cumprimento de condicionantes',
+      'Estudos e relatórios técnicos exigidos',
+    ],
+  },
+  {
+    titulo: 'Gestão de Resíduos e Efluentes',
+    texto:
+      'Estruturação do que sua operação gera, descarta e trata, com a documentação que comprova a conformidade em uma fiscalização.',
+    itens: [
+      'Plano de Gerenciamento de Resíduos Sólidos',
+      'Inventário e destinação de resíduos',
+      'Monitoramento de efluentes e de água',
+      'Rotinas de controle e registros',
+    ],
+  },
+  {
+    titulo: 'Consultoria e Assessoria',
+    texto:
+      'Acompanhamento técnico continuado para manter a empresa regular, antecipar exigências e responder rápido quando o órgão cobra.',
+    itens: [
+      'Diagnóstico de conformidade ambiental',
+      'Adequação de processos e licenças',
+      'Suporte em vistorias e notificações',
+      'Treinamento das equipes internas',
+    ],
+  },
+];
+
+const faq = [
+  {
+    p: 'Quais são as modalidades de licença ambiental?',
+    r: 'O licenciamento ordinário acontece em três etapas: Licença Prévia (viabilidade do empreendimento), Licença de Instalação (autorização para construir ou instalar) e Licença de Operação (autorização para operar). Conforme o porte e o potencial poluidor da atividade, o processo pode seguir por vias mais simples, como o licenciamento simplificado, a autorização ambiental ou a dispensa de licenciamento. Na primeira conversa identificamos qual modalidade se aplica ao seu caso.',
+  },
+  {
+    p: 'Quanto tempo leva para a licença sair?',
+    r: 'Depende da modalidade, do porte do empreendimento, da qualidade da documentação entregue e da fila do órgão ambiental. Casos simples costumam se resolver em algumas semanas; processos que exigem estudos técnicos levam meses. O que mais atrasa um processo é documentação incompleta ou inconsistente — e é exatamente aí que a nossa atuação encurta o caminho.',
+  },
+  {
+    p: 'Quais análises a minha empresa precisa solicitar?',
+    r: 'Varia conforme a atividade e o que ela lança no ambiente. Operações com efluente costumam monitorar parâmetros como DBO, DQO, pH, sólidos e óleos e graxas; quem capta água de poço precisa de análise de potabilidade; resíduos exigem caracterização para a classificação correta. Fazemos o levantamento antes de você gastar com análise que não será exigida.',
+  },
+  {
+    p: 'Quais serviços a Preserv oferece?',
+    r: 'Licenciamento ambiental, gestão de resíduos e efluentes e consultoria continuada, para os setores industrial, agrícola e comercial. Atendemos desde a empresa que está abrindo e precisa regularizar do zero até a que já opera e precisa renovar licenças ou responder a uma exigência do órgão ambiental.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      name: empresa.nome,
+      legalName: empresa.razaoSocial,
+      description: descricao,
+      telephone: empresa.telefone,
+      email: empresa.email,
+      areaServed: { '@type': 'State', name: 'Paraná' },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: empresa.cidade,
+        addressRegion: empresa.uf,
+        addressCountry: 'BR',
+      },
+      knowsAbout: [
+        'Licenciamento ambiental',
+        'Gestão de resíduos sólidos',
+        'Tratamento de efluentes',
+        'Consultoria ambiental',
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map((item) => ({
+        '@type': 'Question',
+        name: item.p,
+        acceptedAnswer: { '@type': 'Answer', text: item.r },
+      })),
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descricao} />
+    <meta name="theme-color" content="#0c2a20" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={empresa.nome} />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230c2a20'/><path d='M23 9c0 8-4.5 12-10 12 0-8 4.5-12 10-12Z' fill='%232a9d6f'/><path d='M10 24c1-4 3.5-7 7-9' stroke='%23eef6f2' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+
+  <body>
+    <!-- ================= cabeçalho ================= -->
+    <header class="topo">
+      <div class="container topo__linha">
+        <a class="marca" href="#inicio" aria-label={`${empresa.nome} — início`}>
+          <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="#0c2a20"></rect>
+            <path d="M23 9c0 8-4.5 12-10 12 0-8 4.5-12 10-12Z" fill="#2a9d6f"></path>
+            <path
+              d="M10 24c1-4 3.5-7 7-9"
+              stroke="#eef6f2"
+              stroke-width="1.6"
+              fill="none"
+              stroke-linecap="round"></path>
+          </svg>
+          <span>
+            <span class="marca__nome">PRESERV</span>
+            <span class="marca__sub">Consultoria Ambiental</span>
+          </span>
+        </a>
+
+        <nav class="topo__nav" aria-label="Navegação principal">
+          <a href="#servicos">Serviços</a>
+          <a href="#diferencial">Por que a Preserv</a>
+          <a href="#duvidas">Dúvidas</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <a class="btn btn--zap" href={zap} target="_blank" rel="noopener">
+          Falar no WhatsApp
+        </a>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <!-- ================= hero ================= -->
+      <section class="hero">
+        <div class="container">
+          <span class="rotulo">Indústria &middot; Agro &middot; Comércio</span>
+          <h1>Regularização ambiental sem travar a sua operação</h1>
+          <p class="hero__texto">
+            A Preserv cuida do licenciamento, dos resíduos e dos efluentes da sua empresa no
+            Paraná — do primeiro protocolo até a licença na mão, com quem entende de chão de
+            fábrica e de lavoura.
+          </p>
+          <div class="hero__acoes">
+            <a class="btn btn--zap" href={zap} target="_blank" rel="noopener">
+              Falar com um consultor
+            </a>
+            <a class="btn btn--fantasma" href="#servicos">Ver serviços</a>
+          </div>
+          <div class="hero__selos">
+            <span class="hero__selo">Atendimento em todo o Paraná</span>
+            <span class="hero__selo">Gestão industrial + agro</span>
+            <span class="hero__selo">Resposta no mesmo dia útil</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= serviços ================= -->
+      <section class="secao secao--clara" id="servicos">
+        <div class="container">
+          <span class="rotulo">Serviços</span>
+          <h2>O que resolvemos para a sua empresa</h2>
+          <p class="intro">
+            Três frentes que cobrem o ciclo completo da conformidade ambiental — da licença
+            inicial à rotina que mantém tudo em ordem.
+          </p>
+
+          <div class="grade">
+            {
+              servicos.map((s) => (
+                <article class="card">
+                  <div class="card__icone">
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true">
+                      <path d="M20 5c0 8.5-5 13-11 13 0-8.5 5-13 11-13Z" />
+                      <path d="M5 21c1-4.5 3.5-8 7.5-10.5" />
+                    </svg>
+                  </div>
+                  <h3>{s.titulo}</h3>
+                  <p>{s.texto}</p>
+                  <ul>
+                    {s.itens.map((i) => (
+                      <li>{i}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= diferencial ================= -->
+      <section class="secao" id="diferencial">
+        <div class="container duas">
+          <div>
+            <span class="rotulo">Por que a Preserv</span>
+            <h2>Quem fala a língua da indústria e a do agro</h2>
+            <p class="intro">
+              A maior parte das consultorias domina um lado só. A Preserv une gestão industrial
+              e agronegócio na mesma equipe — e isso muda o resultado para quem opera nos dois
+              mundos: agroindústria, cooperativa, unidade de beneficiamento, armazém,
+              distribuidora de insumos.
+            </p>
+          </div>
+
+          <ul class="lista-check">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7" /></svg>
+              <span>
+                <strong>Leitura dupla do seu negócio</strong>
+                O processo produtivo e a realidade do campo analisados juntos, não em laudos
+                separados que não conversam.
+              </span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7" /></svg>
+              <span>
+                <strong>Um interlocutor só</strong>
+                Você trata licença, resíduo, efluente e vistoria com a mesma equipe, do início
+                ao fim do processo.
+              </span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7" /></svg>
+              <span>
+                <strong>Foco em não parar a operação</strong>
+                Prazos e condicionantes acompanhados antes de virarem notificação, multa ou
+                embargo.
+              </span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7" /></svg>
+              <span>
+                <strong>Linguagem direta</strong>
+                Você recebe o que precisa ser feito, o custo e o prazo — sem jargão técnico
+                desnecessário.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= dúvidas ================= -->
+      <section class="secao secao--clara" id="duvidas">
+        <div class="container">
+          <span class="rotulo">Dúvidas frequentes</span>
+          <h2>O que perguntam antes de começar</h2>
+
+          <div class="faq">
+            {
+              faq.map((item, i) => (
+                <details open={i === 0}>
+                  <summary>{item.p}</summary>
+                  <div class="faq__corpo">
+                    <p>{item.r}</p>
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= contato ================= -->
+      <section class="secao contato" id="contato">
+        <div class="container duas">
+          <div>
+            <span class="rotulo">Contato</span>
+            <h2>Conte o seu caso. A primeira conversa é sem custo.</h2>
+            <p>
+              Diga qual é a atividade da empresa e em que ponto ela está — abrindo, operando sem
+              licença, renovando ou respondendo a uma exigência. Retornamos com o caminho e um
+              prazo realista.
+            </p>
+            <div class="hero__acoes">
+              <a class="btn btn--zap" href={zap} target="_blank" rel="noopener">
+                Chamar no WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <ul class="contato__dados">
+            <li>
+              <span>WhatsApp e telefone</span>
+              <a href={zap} target="_blank" rel="noopener">{empresa.telefoneExibicao}</a>
+            </li>
+            <li>
+              <span>E-mail</span>
+              <a href={`mailto:${empresa.email}`}>{empresa.email}</a>
+            </li>
+            <li>
+              <span>Atendimento</span>
+              <a href={zap} target="_blank" rel="noopener">Todo o estado do Paraná</a>
+            </li>
+            <li>
+              <span>Horário</span>
+              <a href={zap} target="_blank" rel="noopener">{empresa.horario}</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape">
+      <div class="container rodape__linha">
+        <span>
+          {empresa.razaoSocial} &middot; CNPJ {empresa.cnpj} &middot; {empresa.cidade}/{empresa.uf}
+        </span>
+        <span>&copy; {new Date().getFullYear()} Preserv Consultoria Ambiental</span>
+      </div>
+    </footer>
+
+    <a
+      class="flutuante"
+      href={zap}
+      target="_blank"
+      rel="noopener"
+      aria-label="Falar no WhatsApp">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.17 8.17 0 0 1-1.25-4.37c0-4.54 3.69-8.23 8.23-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.22-8.24 8.22Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.04 0 1.2.87 2.36.99 2.53.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"
+        ></path>
+      </svg>
+    </a>
+  </body>
+</html>
