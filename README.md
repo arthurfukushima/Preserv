@@ -1,43 +1,37 @@
-# Astro Starter Kit: Minimal
+# Preserv Consultoria Ambiental
 
-```sh
-npm create astro@latest -- --template minimal
-```
+One-page corporate site for **Preserv Consultoria Ambiental** (environmental consulting for industry, agribusiness and commerce in Paraná), built with [Astro](https://astro.build).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Live site:** https://arthurfukushima.github.io/Preserv/
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/pages/index.astro   the whole page: company data, services, FAQ, markup
+src/styles/global.css   design tokens and styles
+src/assets/hero.png     hero image (optimized at build time by Astro)
+docs/clientrequest.md   original client briefing
+docs/feedback/          client voice notes (.ogg, git-ignored) + transcripts (.md)
+scripts/transcribe.py   transcribes the voice notes locally
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Company data (phone, e-mail, address, hours) and the services and FAQ lists are at the top of `index.astro`. Items marked `TODO cliente` are waiting on the client.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Commands
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command           | Action                                  |
+| :---------------- | :-------------------------------------- |
+| `npm install`     | Install dependencies                    |
+| `npm run dev`     | Dev server at `localhost:4321/Preserv/` |
+| `npm run build`   | Build to `./dist/`                      |
+| `npm run preview` | Preview the build locally               |
 
-## 🧞 Commands
+## Client audio feedback
 
-All commands are run from the root of the project, from a terminal:
+1. Drop the voice notes in `docs/feedback/`.
+2. `pip install faster-whisper` (once), then `python scripts/transcribe.py`. It writes a Portuguese `.md` next to each audio file. It runs offline on the CPU.
+3. Read the transcripts and apply the changes. Check names and numbers by ear, since Whisper can mishear them.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Deploy
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Every push to `main` builds and publishes to GitHub Pages through `.github/workflows/deploy.yml`. The site is served under the `/Preserv/` base path (see `astro.config.mjs`).
