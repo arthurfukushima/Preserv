@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# client audio (transcripts .md are kept)
+docs/feedback/*.ogg
+docs/feedback/*.opus
+docs/feedback/*.oga
+docs/feedback/*.m4a
+docs/feedback/*.mp3
+docs/feedback/*.wav

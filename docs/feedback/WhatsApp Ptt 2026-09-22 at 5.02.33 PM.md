@@ -1,0 +1,1 @@
+Essa parte, quem fala a nossa língua, tá bacana, é só esse finalzinho aqui ó, e isso muda o resultado para quem opera nos dois mundos, a indústria cooperativa, as unidades de beneficiamento, armazenamento e distribuidoras de insumos e produtores furais também, pode colocar aí produtores furais também.

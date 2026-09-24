@@ -1,0 +1,1 @@
+Eu sei como você pediu para procurar, você pediu para colocar como seu objetivo da empresa, ou sei lá, alguma coisa nesse sentido, mas isso daí daria para refazer bem, é a parte que mais dá para mudar isso aí.

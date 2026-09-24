@@ -1,0 +1,1 @@
+Esse layout do chat de EPT, essa proposta visual ficou melhor de todos, é o que eu falei para você, é o mais clínio possível. Eu só trocaria essa foda, esse rio e árvores aí, por questão de campo e uma indústria. Tipo assim, colocar um parque industrial e uma parte de lavoura no fundo, pastagem, essas coisas.

@@ -20,3 +20,8 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Client audio requests
+
+The client sends change requests as voice notes. Drop them in `docs/feedback/`, run `python scripts/transcribe.py` (needs `pip install faster-whisper`), then read the generated `docs/feedback/<name>.md`.
+Show the requested changes with quotes before editing, and flag ambiguous numbers or spellings instead of guessing.

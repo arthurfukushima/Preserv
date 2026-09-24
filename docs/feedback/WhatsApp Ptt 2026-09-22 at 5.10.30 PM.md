@@ -1,0 +1,1 @@
+Só para você entender, eu tenho como objetivo na preserve, sempre que eu feche uma consultoria é não que eles não me vejam como custo, eles me vejam como uma consultoria que vai fazer as traseirações e procedimentos que vão gerar rendimento ou corte de custo para eles me pagarem com esses valores.
