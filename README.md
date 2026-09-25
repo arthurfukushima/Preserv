@@ -2,7 +2,7 @@
 
 One-page corporate site for **Preserv Consultoria Ambiental** (environmental consulting for industry, agribusiness and commerce in Paraná), built with [Astro](https://astro.build).
 
-**Live site:** https://arthurfukushima.github.io/Preserv/
+**Live site:** https://preservambientalpr.com.br
 
 ## Structure
 
@@ -22,7 +22,7 @@ Company data (phone, e-mail, address, hours) and the services and FAQ lists are 
 | Command           | Action                                  |
 | :---------------- | :-------------------------------------- |
 | `npm install`     | Install dependencies                    |
-| `npm run dev`     | Dev server at `localhost:4321/Preserv/` |
+| `npm run dev`     | Dev server at `localhost:4321`          |
 | `npm run build`   | Build to `./dist/`                      |
 | `npm run preview` | Preview the build locally               |
 
@@ -34,4 +34,4 @@ Company data (phone, e-mail, address, hours) and the services and FAQ lists are 
 
 ## Deploy
 
-Every push to `main` builds and publishes to GitHub Pages through `.github/workflows/deploy.yml`. The site is served under the `/Preserv/` base path (see `astro.config.mjs`).
+Every push to `main` builds and publishes to GitHub Pages through `.github/workflows/deploy.yml`. The custom domain is set by `public/CNAME` (DNS: four `A` records to GitHub Pages, `www` CNAME to `arthurfukushima.github.io`).
